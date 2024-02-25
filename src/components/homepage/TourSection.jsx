@@ -1,8 +1,9 @@
 import React from 'react'
 import TourTile from './TourTile'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '../../constants/links'
 
-const TourSection = ({ title, more = true }) => {
+const TourSection = ({ title, more = true, tours = [] }) => {
 
     const navigate = useNavigate()
 
@@ -12,17 +13,17 @@ const TourSection = ({ title, more = true }) => {
                 <div className="text-[28px] font-bold">
                     {title}
                 </div>
-                {more ? <button className="text-[20px] text-primary">
+                {more ? <button onClick={() => navigate("trip-plans")} className="text-[20px] text-primary">
                     See more
                 </button> : <></>}
             </div>
 
             <div className="flex flex-wrap justify-between items-center gap-[30px] ">
-                <TourTile onClick={() => navigate("/tours/1")} title={"4 days Trip to Hunza"} city={"Islamabad"} startCity={"Lahore"} price={"2000000"} image={"https://images.unsplash.com/photo-1560707303-4e980ce876ad?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} />
-                <TourTile title={"4 days Trip to Hunza"} city={"Islamabad"} startCity={"Lahore"} price={"2000000"} image={"https://images.unsplash.com/photo-1560707303-4e980ce876ad?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} />
-                <TourTile title={"4 days Trip to Hunza"} city={"Islamabad"} startCity={"Lahore"} price={"2000000"} image={"https://images.unsplash.com/photo-1560707303-4e980ce876ad?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} />
-                <TourTile title={"4 days Trip to Hunza"} city={"Islamabad"} startCity={"Lahore"} price={"2000000"} image={"https://images.unsplash.com/photo-1560707303-4e980ce876ad?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} />
-                <TourTile title={"4 days Trip to Hunza"} city={"Islamabad"} startCity={"Lahore"} price={"2000000"} image={"https://images.unsplash.com/photo-1560707303-4e980ce876ad?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} />
+                {tours.map((element, index) => (
+                    <TourTile onClick={() => navigate("/tours/" + element["id"])} title={element["title"]} city={element["start_city"]} startCity={element["start_city"]} price={element["price"]} image={element["locations"][0]["image"]} />
+                ))}
+
+
 
             </div>
         </div >

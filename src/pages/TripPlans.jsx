@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { AutoComplete, DatePicker, SelectPicker } from 'rsuite'
 import TourSection from '../components/homepage/TourSection';
 import CTA from '../components/authPages/CTA';
 
 const TripPlans = () => {
+
+    const [tours, setTours] = useState([])
+    const [loading, setLoading] = useState(true)
+
+
+    useEffect(() => {
+        fetch(`${API_URL}/travel/tours`).then(res => res.json().then(data => {
+            setTours(data)
+            setLoading(false)
+        }))
+    }, [])
+
 
 
     const locations = ["Australia", "America"]
@@ -32,11 +44,14 @@ const TripPlans = () => {
                     </div>
                     <CTA text={"Filter Now"} variant="sm" type={"primary"} />
                 </div>
-                <div>
+                {
+                    loading ?
+                        <></> : <div>
 
-                    <TourSection title={"Recommended For You"} more={false} />
+                            <TourSection title={"Recommended For You"} more={false} tours={tours} />
 
-                </div>
+                        </div>
+                }
             </div>
         </div>
     )
