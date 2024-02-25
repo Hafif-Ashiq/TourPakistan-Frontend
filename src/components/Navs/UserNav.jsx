@@ -13,7 +13,7 @@ const UserNav = () => {
 
     const links = [
         {
-            to: "/user/dashboard",
+            to: "/dashboard",
             text: "Dashboard"
         },
         {
@@ -49,7 +49,7 @@ const UserNav = () => {
 
                 </ul>
             </div>
-            <CTA text={"Logout"} variant='sm' type="primary" />
+            <CTA text={"Logout"} variant='sm' type="primary" onClick={() => navigate("/")} />
         </div>
     )
 }

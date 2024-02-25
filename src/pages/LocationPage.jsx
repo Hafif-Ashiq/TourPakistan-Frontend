@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { API_URL } from '../constants/links'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import CTA from '../components/authPages/CTA'
 
 const LocationPage = () => {
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const [name, setName] = useState("")
     const [history, setHistory] = useState("")
@@ -29,7 +31,7 @@ const LocationPage = () => {
             {loading ? <></> : <>
                 <div className='flex flex-col gap-[20px]'>
                     <h4 className='text-[36px] font-bold '>{name}</h4>
-                    <div>
+                    <div className='flex justify-center items-center'>
                         <img src={API_URL + image} alt="abc" className='h-[500px] ' />
                     </div>
                     <p className='text-[20px]'><span className='font-bold'>City:</span> {city}</p>
@@ -37,6 +39,9 @@ const LocationPage = () => {
                 <div className='flex flex-col gap-[20px]'>
                     <h4 className='text-[28px] font-bold'>Historical Background</h4>
                     <p className='text-[20px]'>{history}</p>
+                    <div className='flex justify-center items-center'>
+                        <CTA text={"Go to Maps.."} onClick={() => navigate("/maps")} />
+                    </div>
                 </div></>}
 
         </div>

@@ -20,6 +20,8 @@ import WorkWithUs from './pages/WorkWithUs';
 import UserDashboard from './pages/UserDashboard';
 import TourDescription from './pages/TourDescription';
 import LocationPage from './pages/LocationPage';
+import UserTours from './pages/UserTours';
+import Maps from './pages/Maps';
 
 // import Home from './pages/home';
 
@@ -38,10 +40,11 @@ const App = () => {
           </Route>
           <Route path="/login" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/maps" element={<Maps />} />
           <Route path="/work-with-us" element={<WorkWithUs />} />
           <Route element={<UserLayout />} >
-            <Route path='/user/dashboard' element={<UserDashboard />} />
-            <Route path='/user/tours' element={<UserDashboard />} />
+            <Route path='/dashboard' element={<UserDashboard />} />
+            <Route path='/user/tours' element={<UserTours />} />
             {/* <Route path='/destinations' element={<Destinations />} />
             <Route path='/trip-plans' element={<TripPlans />} />
             <Route path='/about-us' element={<AboutUs />} /> */}
