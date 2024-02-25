@@ -1,18 +1,21 @@
 import React from 'react'
+import { Radio, RadioGroup } from 'rsuite'
 
-const FilterSelect = () => {
+const FilterSelect = ({ onChange }) => {
 
     const selections = ["City", "Locations"]
 
     return (
-        <div class="radio-inputs">
-            {selections.map(element => (
-                <label class="radio text-[20px]">
-                    <input type="radio" name="radio" checked />
-                    <span class="name">{element}</span>
-                </label>
+        <RadioGroup name="radioList" inline appearance="picker" defaultValue={selections[0]} onChange={onChange} style={{
+            height: 40,
+            fontSize: 20
+        }}>
+            {selections.map(el => (
+                <Radio value={el}>{el}</Radio>
             ))}
-        </div>
+
+        </RadioGroup>
+
     )
 }
 

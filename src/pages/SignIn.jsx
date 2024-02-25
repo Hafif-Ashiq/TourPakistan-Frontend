@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import InputField from '../components/authPages/InputField'
 import CTA from '../components/authPages/CTA'
 import axios from 'axios'
-
 import { API_URL } from "../constants/links"
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = ({ route }) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const navigate = useNavigate()
 
 
     const handleSignIn = async () => {
@@ -30,6 +31,7 @@ const SignIn = ({ route }) => {
                 }
             }).then(response => {
                 console.log(response);
+                navigate("/dashboard")
             })
     }
 
